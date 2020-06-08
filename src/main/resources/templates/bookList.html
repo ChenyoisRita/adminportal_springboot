@@ -4,7 +4,7 @@
 <head th:replace="common/header :: common-header" />
 
 <body>
-	<div th:replace="common/header :: navbar" />
+	<div th:replace="common/header :: navbar" ></div>
 	
 	<div class="container">
 		<div class="table-responsive">
@@ -38,6 +38,20 @@
 	</div>
 	
 	
-	<div th:replace="common/header :: body-bottom-scripts" />
+	<div th:replace="common/header :: body-bottom-scripts" ></div>
+	
+	<script>
+		$(document).ready(function() {
+			$('#bookListTable').DataTable({
+				"lengthMenu": [
+
+					[5,10,15,20,-1],[5,10,15,20,"All"]
+
+					],
+				"ordering": false,
+				stateSave: true
+			});
+		});
+	</script>
 </body>
 </html>
