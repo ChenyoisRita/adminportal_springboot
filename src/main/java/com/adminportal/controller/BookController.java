@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.adminportal.domain.Book;
@@ -103,6 +102,17 @@ public class BookController {
 		model.addAttribute("bookList", bookList);		
 		return "bookList";
 		
+	}
+	
+	@RequestMapping(value="/remove", method=RequestMethod.POST)
+	public String remove(
+			@ModelAttribute("id") String id, Model model
+			) {
+		bookService.removeOne(Long.parseLong(id.substring(8)));
+		List<Book> bookList = bookService.findAll();
+		model.addAttribute("bookList", bookList);
+		
+		return "redirect:/book/bookList";
 	}
 
 }
